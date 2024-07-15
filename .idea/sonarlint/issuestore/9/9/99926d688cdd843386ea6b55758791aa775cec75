@@ -1,0 +1,11 @@
+
+½
+java:S6204"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨Ή8λί©Μƒ2J$f6096f26-3bef-485e-9ab8-b5bd1d442565
+
+java:S1612"GReplace this lambda with method reference 'Playable.class::isInstance'.(«­Οϊÿÿÿÿ8λί©Μƒ2J$2854fb28-1a09-4841-ba92-8e8cba37a133
+½
+java:S6204$"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨Ή8ϊί©Μƒ2J$0b304015-d09f-4953-aec5-4ae22a58cb0c
+½
+java:S6204*"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨Ή8ϊί©Μƒ2J$19ea2825-cb49-44c9-9e6d-659638dd15b3
+½
+java:S62042"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨Ή8ϊί©Μƒ2J$0f324907-cf2b-46a3-b026-a79f4b7033f9
