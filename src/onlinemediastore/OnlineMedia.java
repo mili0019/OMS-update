@@ -98,7 +98,7 @@ public class OnlineMedia {
 		}
 
 		System.out.println("Enter category to filter:");
-		scanner.nextLine(); // Consumă newline-ul rămas
+		scanner.nextLine();
 		String category = scanner.nextLine();
 
 		List<Media> filteredItems = selectedItems.stream()
