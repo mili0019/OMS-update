@@ -1,11 +1,11 @@
 
 ½
-java:S6204"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨Ή8λί©Μƒ2J$3502ec6b-b34d-4e43-97da-f34b85bc37c9
+java:S6204"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨Ή8λί©Μƒ2J$ed73377e-5123-4629-9aae-3e9ffda65b02
 
-java:S1612"GReplace this lambda with method reference 'Playable.class::isInstance'.(«­Οϊÿÿÿÿ8λί©Μƒ2J$42f73509-eaf0-4091-adde-5fdc532807a6
+java:S1612"GReplace this lambda with method reference 'Playable.class::isInstance'.(«­Οϊÿÿÿÿ8λί©Μƒ2J$3ee2fccc-419f-4211-9582-f850bb746283
 ½
-java:S6204$"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨Ή8ϊί©Μƒ2J$a36aa64e-317c-4672-966c-61fb8ed569b5
+java:S6204$"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨Ή8ϊί©Μƒ2J$0259aa34-91ba-4450-abb5-5aaf030cb04d
 ½
-java:S6204*"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨Ή8ϊί©Μƒ2J$4656fb4c-8bbe-4275-bbaf-9a21696d749c
+java:S6204*"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨Ή8ϊί©Μƒ2J$abc26b55-e8c6-467f-9760-99758a3bb339
 ½
-java:S62042"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨Ή8ϊί©Μƒ2J$8c9e34d3-7d91-436b-baaa-4416f4c16757
+java:S62042"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨Ή8ϊί©Μƒ2J$0756f6b4-110a-482d-9b9a-af53956670b5
