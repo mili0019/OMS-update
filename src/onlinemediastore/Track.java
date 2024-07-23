@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class Track extends Media implements Playable, Comparable<Track>, Serializable {
     private int length;
 
-    public Track(String title, int length) {
-        super(title, "Track", 0.0);
+    public Track(int id, String title, int length) {
+        super(id, title, "Track", 0.0);
         this.length = length;
     }
 
@@ -14,7 +14,6 @@ public class Track extends Media implements Playable, Comparable<Track>, Seriali
         return length;
     }
 
-    // Setters
     public void setLength(int length) {
         this.length = length;
     }
@@ -22,11 +21,12 @@ public class Track extends Media implements Playable, Comparable<Track>, Seriali
     @Override
     public String toString() {
         return "Track{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", length=" + length +
                 '}';
     }
-    
+
     @Override
     public void play() throws PlayerException {
         if (length == 0) {
@@ -36,7 +36,7 @@ public class Track extends Media implements Playable, Comparable<Track>, Seriali
             System.out.println("Length: " + length + " seconds");
         }
     }
-    
+
     @Override
     public int compareTo(Track other) {
         return Integer.compare(this.length, other.length);

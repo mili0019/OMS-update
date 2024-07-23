@@ -3,15 +3,14 @@ package onlinemediastore;
 public class DigitalVideoDisc extends Media implements Playable {
     private String director;
     private int length;
-    
-    // constructor
-    public DigitalVideoDisc(String title, String category, double cost, String director, int length) {
-    	super(title, category, cost);
+
+    public DigitalVideoDisc(int id, String title, String category, double cost, String director, int length) {
+        super(id, title, category, cost);
         this.director = director;
         this.length = length;
     }
 
-    // getters
+    // Getters
     public String getDirector() {
         return director;
     }
@@ -20,7 +19,7 @@ public class DigitalVideoDisc extends Media implements Playable {
         return length;
     }
 
-    // setters
+    // Setters
     public void setDirector(String director) {
         this.director = director;
     }
@@ -28,18 +27,19 @@ public class DigitalVideoDisc extends Media implements Playable {
     public void setLength(int length) {
         this.length = length;
     }
-    
+
     @Override
     public String toString() {
         return "DigitalVideoDisc{" +
-                "title='" + title + '\'' +
+                "id=" + id + // Add this line
+                ", title='" + title + '\'' +
                 ", category='" + category + '\'' +
                 ", cost=" + cost +
                 ", director='" + director + '\'' +
                 ", length=" + length +
                 '}';
     }
-    
+
     @Override
     public void play() throws PlayerException {
         if (length == 0) {

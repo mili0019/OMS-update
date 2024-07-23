@@ -1,29 +1,28 @@
 package onlinemediastore;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Book extends Media{
-    private ArrayList<String> authors;
+public class Book extends Media {
+    private List<String> authors;
 
-    public Book(String title, String category, double cost, ArrayList<String> authors) {
-        super(title, category, cost);
+    public Book(int id, String title, String category, double cost, List<String> authors) {
+        super(id, title, category, cost);
         this.authors = authors;
     }
 
-    // Getters
-    public ArrayList<String> getAuthors() {
+    public List<String> getAuthors() {
         return authors;
     }
 
-    // Setters
-    public void setAuthors(ArrayList<String> authors) {
+    public void setAuthors(List<String> authors) {
         this.authors = authors;
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", category='" + category + '\'' +
                 ", cost=" + cost +
                 ", authors=" + authors +

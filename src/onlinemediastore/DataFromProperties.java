@@ -12,7 +12,6 @@ import java.util.Properties;
 public class DataFromProperties {
     private static final String FILE_NAME = "media.properties";
 
-    // citire din fisier
     public static Properties readProperties() {
         Properties properties = new Properties();
         try (FileInputStream fis = new FileInputStream(FILE_NAME)) {
@@ -23,46 +22,54 @@ public class DataFromProperties {
         return properties;
     }
 
-    // scriere in fisier
     public static void writeProperties(String key, String value) {
-        try (FileOutputStream fos = new FileOutputStream(FILE_NAME)) {
+        try (FileOutputStream fos = new FileOutputStream(FILE_NAME, true)) {
             Properties properties = new Properties();
+            properties.load(new FileInputStream(FILE_NAME));
             properties.setProperty(key, value);
             properties.store(fos, null);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     public static DigitalVideoDisc createDigitalVideoDisc(Properties properties, String prefix) {
+        int id = Integer.parseInt(properties.getProperty(prefix + ".id"));
         String title = properties.getProperty(prefix + ".title");
         String category = properties.getProperty(prefix + ".category");
-        double price = Double.parseDouble(properties.getProperty(prefix + ".price"));
+        double cost = Double.parseDouble(properties.getProperty(prefix + ".cost"));
         String director = properties.getProperty(prefix + ".director");
         int length = Integer.parseInt(properties.getProperty(prefix + ".length"));
-        return new DigitalVideoDisc(title, category, price, director, length);
+        DigitalVideoDisc dvd = new DigitalVideoDisc(id, title, category, cost, director, length);
+        dvd.setId(id);
+        return dvd;
     }
 
     public static Book createBook(Properties properties, String prefix) {
+        int id = Integer.parseInt(properties.getProperty(prefix + ".id"));
         String title = properties.getProperty(prefix + ".title");
         String category = properties.getProperty(prefix + ".category");
-        double price = Double.parseDouble(properties.getProperty(prefix + ".price"));
+        double cost = Double.parseDouble(properties.getProperty(prefix + ".cost"));
         String authorsStr = properties.getProperty(prefix + ".authors");
         ArrayList<String> authors = new ArrayList<>(Arrays.asList(authorsStr.split(",")));
-        return new Book(title, category, price, authors);
+        Book book = new Book(id, title, category, cost, authors);
+        book.setId(id);
+        return book;
     }
-    
+
     public static CompactDisc createCompactDisc(Properties properties, String prefix) {
+        int id = Integer.parseInt(properties.getProperty(prefix + ".id"));
         String title = properties.getProperty(prefix + ".title");
         String category = properties.getProperty(prefix + ".category");
         double cost = Double.parseDouble(properties.getProperty(prefix + ".cost"));
         String artist = properties.getProperty(prefix + ".artist");
-        CompactDisc cd = new CompactDisc(title, category, cost, artist);
+        CompactDisc cd = new CompactDisc(id, title, category, cost, artist);
+        cd.setId(id);
 
         int trackCount = Integer.parseInt(properties.getProperty(prefix + ".track.count"));
         for (int i = 1; i <= trackCount; i++) {
             Track track = createTrack(properties, prefix + ".track" + i);
-            cd.getTracks().add(track);
+            cd.addTrack(track);
         }
         List<Track> tracks = cd.getTracks();
         Collections.sort(tracks);
@@ -70,9 +77,11 @@ public class DataFromProperties {
     }
 
     public static Track createTrack(Properties properties, String prefix) {
+        int id = Integer.parseInt(properties.getProperty(prefix + ".id"));
         String trackTitle = properties.getProperty(prefix + ".title");
         int trackLength = Integer.parseInt(properties.getProperty(prefix + ".length"));
-        return new Track(trackTitle, trackLength);
+        Track track = new Track(id, trackTitle, trackLength);
+        track.setId(id);
+        return track;
     }
-    
 }

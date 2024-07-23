@@ -3,17 +3,22 @@ package onlinemediastore;
 import java.io.Serializable;
 
 public abstract class Media implements Serializable{
-	protected String title;
+    protected int id;
+    protected String title;
     protected String category;
     protected double cost;
 
-    public Media(String title, String category, double cost) {
+    public Media(int id, String title, String category, double cost) {
+        this.id = id;
         this.title = title;
         this.category = category;
         this.cost = cost;
     }
 
-    // Getters
+    public int getId() {
+        return id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -26,7 +31,10 @@ public abstract class Media implements Serializable{
         return cost;
     }
 
-    // Setters
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -42,9 +50,12 @@ public abstract class Media implements Serializable{
     @Override
     public String toString() {
         return "Media{" +
+                "id=" + id +
                 "title='" + title + '\'' +
                 ", category='" + category + '\'' +
                 ", cost=" + cost +
                 '}';
     }
+
+
 }
