@@ -6,8 +6,7 @@ import java.util.ArrayList;
 public class Order implements Serializable {
 	private ArrayList<Media> items;
     private int itemCount;
-    
-    // constructor
+
     public Order(int maxSize) {
         this.items = new ArrayList<>();
         this.itemCount = 0;

@@ -64,7 +64,7 @@ public class OnlineMedia {
 			dvd1.setTitle("Updated DVD");
 			digitalVideoDiscDAO.update(dvd1);
 
-			compactDiscDAO.delete(1);
+//			compactDiscDAO.delete(1);
 
 			dvds = digitalVideoDiscDAO.getAll();
 			cds = compactDiscDAO.getAll();

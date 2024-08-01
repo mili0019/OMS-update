@@ -1,6 +1,7 @@
 package onlinemediastore.dao;
 
 import onlinemediastore.Book;
+import onlinemediastore.DataSourceManager;
 import onlinemediastore.DatabaseConnection;
 
 import java.sql.Connection;
@@ -13,7 +14,7 @@ import java.util.List;
 public class BookDAO {
     public void insert(Book book) throws SQLException {
         String sql = "INSERT INTO books (id, title, category, cost, authors) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, book.getId());
             stmt.setString(2, book.getTitle());
@@ -26,7 +27,7 @@ public class BookDAO {
 
     public void update(Book book) throws SQLException {
         String sql = "UPDATE books SET title=?, category=?, cost=?, authors=? WHERE id=?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, book.getTitle());
             stmt.setString(2, book.getCategory());
@@ -39,7 +40,7 @@ public class BookDAO {
 
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM books WHERE id=?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
@@ -48,7 +49,7 @@ public class BookDAO {
 
     public Book get(int id) throws SQLException {
         String sql = "SELECT * FROM books WHERE id=?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
@@ -68,7 +69,7 @@ public class BookDAO {
     public List<Book> getAll() throws SQLException {
         String sql = "SELECT * FROM books";
         List<Book> books = new ArrayList<>();
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {

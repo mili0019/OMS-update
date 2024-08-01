@@ -11,7 +11,7 @@ public class MediaDAO {
     public void addMedia(Media media) {
         String sql = "INSERT INTO media (title, category, cost) VALUES (?, ?, ?)";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, media.getTitle());
@@ -35,7 +35,7 @@ public class MediaDAO {
         String sql = "SELECT * FROM media WHERE id = ?";
         Media media = null;
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
@@ -70,7 +70,7 @@ public class MediaDAO {
         String sql = "SELECT * FROM media";
         List<Media> mediaList = new ArrayList<>();
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
@@ -103,7 +103,7 @@ public class MediaDAO {
     public void updateMedia(Media media) {
         String sql = "UPDATE media SET title = ?, category = ?, cost = ? WHERE id = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, media.getTitle());
@@ -120,7 +120,7 @@ public class MediaDAO {
     public void deleteMedia(int id) {
         String sql = "DELETE FROM media WHERE id = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);

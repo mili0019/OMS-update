@@ -10,7 +10,6 @@ public class DigitalVideoDisc extends Media implements Playable {
         this.length = length;
     }
 
-    // Getters
     public String getDirector() {
         return director;
     }
@@ -19,7 +18,6 @@ public class DigitalVideoDisc extends Media implements Playable {
         return length;
     }
 
-    // Setters
     public void setDirector(String director) {
         this.director = director;
     }

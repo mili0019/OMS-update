@@ -1,7 +1,7 @@
 package onlinemediastore.dao;
 
 import onlinemediastore.CompactDisc;
-import onlinemediastore.Track;
+import onlinemediastore.DataSourceManager;
 import onlinemediastore.DatabaseConnection;
 
 import java.sql.Connection;
@@ -14,7 +14,7 @@ import java.util.List;
 public class CompactDiscDAO {
     public void insert(CompactDisc cd) throws SQLException {
         String sql = "INSERT INTO compact_discs (id, title, category, cost, artist) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, cd.getId());
             stmt.setString(2, cd.getTitle());
@@ -27,7 +27,7 @@ public class CompactDiscDAO {
 
     public void update(CompactDisc cd) throws SQLException {
         String sql = "UPDATE compact_discs SET title=?, category=?, cost=?, artist=? WHERE id=?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, cd.getTitle());
             stmt.setString(2, cd.getCategory());
@@ -40,7 +40,7 @@ public class CompactDiscDAO {
 
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM compact_discs WHERE id=?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
@@ -49,7 +49,7 @@ public class CompactDiscDAO {
 
     public CompactDisc get(int id) throws SQLException {
         String sql = "SELECT * FROM compact_discs WHERE id=?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
@@ -69,7 +69,7 @@ public class CompactDiscDAO {
     public List<CompactDisc> getAll() throws SQLException {
         String sql = "SELECT * FROM compact_discs";
         List<CompactDisc> cds = new ArrayList<>();
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {

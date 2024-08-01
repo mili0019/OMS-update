@@ -1,5 +1,6 @@
 package onlinemediastore.dao;
 
+import onlinemediastore.DataSourceManager;
 import onlinemediastore.DatabaseConnection;
 import onlinemediastore.Track;
 
@@ -12,7 +13,7 @@ public class TrackDAO implements GenericDAO<Track> {
     @Override
     public void insert(Track track) throws SQLException {
         String sql = "INSERT INTO tracks (id, title, length) VALUES (?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, track.getId());
             pstmt.setString(2, track.getTitle());
@@ -24,7 +25,7 @@ public class TrackDAO implements GenericDAO<Track> {
     @Override
     public Track findById(int id) throws SQLException {
         String sql = "SELECT * FROM tracks WHERE id = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -42,7 +43,7 @@ public class TrackDAO implements GenericDAO<Track> {
     public List<Track> findAll() throws SQLException {
         String sql = "SELECT * FROM tracks";
         List<Track> tracks = new ArrayList<>();
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
@@ -58,7 +59,7 @@ public class TrackDAO implements GenericDAO<Track> {
     @Override
     public void update(Track track) throws SQLException {
         String sql = "UPDATE tracks SET title = ?, length = ? WHERE id = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, track.getTitle());
             pstmt.setInt(2, track.getLength());
@@ -70,7 +71,7 @@ public class TrackDAO implements GenericDAO<Track> {
     @Override
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM tracks WHERE id = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();

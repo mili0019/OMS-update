@@ -1,5 +1,6 @@
 package onlinemediastore.dao;
 
+import onlinemediastore.DataSourceManager;
 import onlinemediastore.DigitalVideoDisc;
 import onlinemediastore.DatabaseConnection;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class DigitalVideoDiscDAO {
     public void insert(DigitalVideoDisc dvd) throws SQLException {
         String sql = "INSERT INTO digital_video_discs (id, title, category, cost, director, length) VALUES (?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, dvd.getId());
             stmt.setString(2, dvd.getTitle());
@@ -27,7 +28,7 @@ public class DigitalVideoDiscDAO {
 
     public void update(DigitalVideoDisc dvd) throws SQLException {
         String sql = "UPDATE digital_video_discs SET title=?, category=?, cost=?, director=?, length=? WHERE id=?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, dvd.getTitle());
             stmt.setString(2, dvd.getCategory());
@@ -41,7 +42,7 @@ public class DigitalVideoDiscDAO {
 
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM digital_video_discs WHERE id=?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
@@ -50,7 +51,7 @@ public class DigitalVideoDiscDAO {
 
     public DigitalVideoDisc get(int id) throws SQLException {
         String sql = "SELECT * FROM digital_video_discs WHERE id=?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
@@ -70,7 +71,7 @@ public class DigitalVideoDiscDAO {
     public List<DigitalVideoDisc> getAll() throws SQLException {
         String sql = "SELECT * FROM digital_video_discs";
         List<DigitalVideoDisc> dvds = new ArrayList<>();
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DataSourceManager.getDataSource().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
